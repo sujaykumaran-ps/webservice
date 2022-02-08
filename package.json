@@ -1,0 +1,24 @@
+{
+  "name": "webservice",
+  "version": "1.0.0",
+  "description": "CSYE6225 Web App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sujaykumaran-ps/webservice.git"
+  },
+  "author": "sujaykumaran-ps",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sujaykumaran-ps/webservice/issues"
+  },
+  "homepage": "https://github.com/sujaykumaran-ps/webservice#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15"
+  }
+}
