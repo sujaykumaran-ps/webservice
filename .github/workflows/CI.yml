@@ -1,4 +1,4 @@
-name: Node.js CI
+name: CI - Unit Test
 on:
   push:
     branches: [ main ]
@@ -25,4 +25,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: npm ci
+      - name: Start and Test the application
       - run: npm start & npm test
