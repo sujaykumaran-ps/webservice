@@ -1,4 +1,4 @@
-# CSYE6225 Web Application
+# CSYE6225 Assignment #01
 
 **Name**  - Sujaykumaran Palanikumar Sankarapandian<br/>
 **NUID**  - 002108932<br/>
@@ -6,7 +6,7 @@
 
 ## Description:
 
-This is a simple Node.js Application, which returns 200 status code when the '/healthz' URL is called.
+This is a simple Node.js Application, which returns 200 status code when the '/healthz' URL is called. 
 
 ## Instructions to Run the Application:
 
