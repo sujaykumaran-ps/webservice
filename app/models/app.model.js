@@ -82,12 +82,7 @@ module.exports = (sequelize, Sequelize) => {
              return bcrypt.compareSync(password, this.password);
             }
            }
-       },
-        {
-            timestamps:true,
-            createdAt: "account_created",
-            updatedAt: "account_updated"
-        });
+       });
 
         // Ignore Password field from Response Payload
         User.prototype.toJSON =  function () {

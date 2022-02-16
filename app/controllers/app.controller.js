@@ -2,8 +2,7 @@ const { response } = require("express");
 const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
-const basicAuth = require('../_helpers/basic-auth.js');
-
+const bcrypt = require('bcrypt');
 
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
@@ -37,10 +36,40 @@ exports.authenticate = (req, res, next) => {
       res.status(200).send(data);
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(400).send({
           message:
             err.message || "Some error occurred while retrieving User Details."
         });
       });
 };
 
+exports.update = (req, res) => {
+    const base64Credentials =  req.headers.authorization.split(' ')[1];
+    const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
+    const [username, password] = credentials.split(':');
+
+    if (req.body.password) {
+        const salt = bcrypt.genSaltSync(10, 'a');
+        req.body.password = bcrypt.hashSync(req.body.password, salt);
+    }
+    User.update(req.body, {
+      where: { username: username }
+    })
+      .then(num => {
+        if (num == 1) {
+          res.status(204).send({
+            message: "User updated successfully !!!"
+          });
+        } else {
+          res.status(400).send({
+            message: "Cannot update User. Maybe User was not found or request body is empty!"
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Error updating User with username=" + username
+        });
+      });
+  };
