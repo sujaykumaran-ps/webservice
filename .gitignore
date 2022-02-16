@@ -69,6 +69,7 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
+app/config/db.config.js
 .env
 .env.test
 
