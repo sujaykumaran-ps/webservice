@@ -3,5 +3,6 @@ module.exports = app => {
     var router = require("express").Router();
     // Create a new Tutorial
     router.post("/", users.create);
+    router.get("/self", users.authenticate);
     app.use('/v1/user', router);
   };

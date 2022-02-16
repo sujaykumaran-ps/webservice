@@ -70,18 +70,31 @@ module.exports = (sequelize, Sequelize) => {
                     user.password = bcrypt.hashSync(user.password, salt);
                 }
             },
-            beforeUpdate:async (user) => {
+            beforeUpdate: async (user) => {
                 if (user.password) {
                     const salt = await bcrypt.genSaltSync(10, 'a');
                     user.password = bcrypt.hashSync(user.password, salt);
                 }
             }
         }, 
+        instanceMethods: {
+            validPassword: (password) => {
+             return bcrypt.compareSync(password, this.password);
+            }
+           }
        },
-    {
-        timestamps:true,
-        createdAt: "account_created",
-        updatedAt: "account_updated"
-    });
+        {
+            timestamps:true,
+            createdAt: "account_created",
+            updatedAt: "account_updated"
+        });
+
+        // Ignore Password field from Response Payload
+        User.prototype.toJSON =  function () {
+            var values = Object.assign({}, this.get());
+            delete values.password;
+            return values;
+        }
+
     return User;
   };

@@ -1,7 +1,8 @@
 const db = require("../models");
-const bcrypt = require("bcrypt");
 const User = db.users;
 const Op = db.Sequelize.Op;
+const userService = require('../services/app.service.js');
+
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
     // Create a User
@@ -23,3 +24,10 @@ exports.create = (req, res) => {
         });
     });
 };
+
+exports.authenticate = (req, res, next) => {
+    userService.authenticate(req.body)
+        .then(user => user ? res.json(user) : res.status(400).json({ message: 'Username or password is incorrect' }))
+        .catch(err => next(err));
+};
+
