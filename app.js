@@ -17,13 +17,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(basicAuth);
-require("dotenv").config()
 
-const PORT = process.env.PORT
 
 
 app.get('/healthz', (req, res) => {
     res.json()
 });
 require("./app/routes/app.routes.js")(app);
-app.listen(PORT, () => console.log(`App listening at http://localhost:${PORT}`));
+app.listen(3000, () => console.log(`App listening at http://localhost:3000`));
