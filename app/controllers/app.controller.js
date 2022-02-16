@@ -1,7 +1,9 @@
+const { response } = require("express");
 const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
-const userService = require('../services/app.service.js');
+const basicAuth = require('../_helpers/basic-auth.js');
+
 
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
@@ -26,8 +28,19 @@ exports.create = (req, res) => {
 };
 
 exports.authenticate = (req, res, next) => {
-    userService.authenticate(req.body)
-        .then(user => user ? res.json(user) : res.status(400).json({ message: 'Username or password is incorrect' }))
-        .catch(err => next(err));
+    const base64Credentials =  req.headers.authorization.split(' ')[1];
+    const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
+    const [username, password] = credentials.split(':');
+    console.log(username);
+    User.findAll({ where: {username: username} })
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving User Details."
+        });
+      });
 };
 
