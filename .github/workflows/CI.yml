@@ -8,7 +8,7 @@ jobs:
     env:
       DB_DATABASE: userdb
       DB_USER: root
-      DB_PASSWORD: Jayashree44.
+      DB_PASSWORD: root
 
     steps:
       - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
