@@ -4,7 +4,7 @@ const User = db.users;
 const Op = db.Sequelize.Op;
 const bcrypt = require('bcrypt');
 
-// Create and Save a new Tutorial
+// Create and Save a new User
 exports.create = (req, res) => {
     // Create a User
     const user = {
@@ -26,6 +26,7 @@ exports.create = (req, res) => {
     });
 };
 
+// Fetch Authenticated User Details
 exports.authenticate = (req, res, next) => {
     const base64Credentials =  req.headers.authorization.split(' ')[1];
     const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
@@ -43,6 +44,7 @@ exports.authenticate = (req, res, next) => {
       });
 };
 
+// Update User Details
 exports.update = (req, res) => {
     const base64Credentials =  req.headers.authorization.split(' ')[1];
     const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
@@ -52,6 +54,20 @@ exports.update = (req, res) => {
         const salt = bcrypt.genSaltSync(10, 'a');
         req.body.password = bcrypt.hashSync(req.body.password, salt);
     }
+    
+    // Ignoring Username field
+    if(req.body.username && req.body.username != username ){
+        res.status(400).send({
+          message: "Username cannot be updated !!!"
+        });
+    }
+    // Ignoring Timestamps
+    else if(req.body.account_created || req.body.account_updated) {
+      res.status(400).send({
+        message: "Timestamp Fields cannot be updated !!!"
+      });
+    }
+    else {
     User.update(req.body, {
       where: { username: username }
     })
@@ -72,4 +88,5 @@ exports.update = (req, res) => {
                 err.message || "Error updating User with username=" + username
         });
       });
+    }
   };

@@ -23,5 +23,7 @@ app.use(basicAuth);
 app.get('/healthz', (req, res) => {
     res.json()
 });
+
 require("./app/routes/app.routes.js")(app);
+
 app.listen(3000, () => console.log(`App listening at http://localhost:3000`));
