@@ -6,6 +6,7 @@ module.exports = {
     authenticate
 };
 
+// Postman Authentication
 async function authenticate({ username, password }) {
     const user = User.findAll({
         where: { username: username }

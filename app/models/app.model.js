@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 module.exports = (sequelize, Sequelize) => {
-    const User = sequelize.define("user", {
+        const User = sequelize.define("user", {
         id: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV4,
@@ -34,7 +34,6 @@ module.exports = (sequelize, Sequelize) => {
         username: {
             type: Sequelize.STRING,
             allowNull: false,
-            noUpdate: true,
             validate: {
                 isEmail: {
                     msg: "Username must be an Email"
@@ -60,9 +59,11 @@ module.exports = (sequelize, Sequelize) => {
                     msg: "Password field can not be empty!"
                 }
             }
-        }
+        },
     },
-    {
+    {   timestamps: true,
+        createdAt: "account_created",
+        updatedAt: "account_updated",
         hooks: {
             beforeCreate: async (user) => {
                 if (user.password) {
