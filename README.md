@@ -6,8 +6,8 @@
 
 ## Description:
 
-The application returns 200 status code when the '/healthz' URL is called. 
-The user can Sign up with their details using the '/v1/user' endpoint.
+This NodeJS application returns 200 status code when the '/healthz' URL is called. <br/>
+The user can Sign up with their details using the '/v1/user' endpoint. <br/>
 Authenticated Users can view and Update their account information using 'v1/user/self' Endpoint.
 
 ## Instructions to Run the Application:
