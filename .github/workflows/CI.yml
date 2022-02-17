@@ -8,7 +8,7 @@ jobs:
   Test:
     runs-on: ubuntu-latest
     env:
-      DB_DATABASE: test_db
+      DB_DATABASE: userdb
       DB_USER: root
       DB_PASSWORD: root
 
@@ -29,5 +29,5 @@ jobs:
           node-version: '14'
       - name: Install dependencies
         run: npm ci
-      - name: Test the application
-        run: npm test
+      - name: Start and Test the application
+        run: npm start & npm test
