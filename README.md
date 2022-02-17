@@ -17,5 +17,9 @@ Authenticated Users can view and Update their account information using 'v1/user
 3. Install the dependencies using the 'npm install' command.
 4. Enter the credentials for MySQL DB in the Config file under "app/config" folder.
 5. Run the application using the 'npm start' command. The application will run in 'http://localhost:3000'.
-6. Run the 'npm test' command to run the unit tests for the application.
-7. Hit the 'http://localhost:3000/healthz' URL in Postman. This will return the 200 OK Status.
+6. Hit the 'http://localhost:3000/healthz' URL in Postman. This will return the 200 OK Status.
+7. Add User Account by providing First Name, Last Name, Username and Password in a Json format, by posting to 'http://localhost:3000/v1/user' endpoint.
+8. Authenticate the User by using Postman Basic Auth.
+9. View the User Account Details by hitting the 'http://localhost:3000/v1/user/self'. This will return error if user is not authenticated.
+10. The Authenticated User details can be updated by PUT request to the same endpoint.
+11. Run the 'npm test' command to run the unit tests for the application.
