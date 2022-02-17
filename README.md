@@ -1,4 +1,4 @@
-# CSYE6225 Assignment #01
+# CSYE6225 Assignment 
 
 **Name**  - Sujaykumaran Palanikumar Sankarapandian<br/>
 **NUID**  - 002108932<br/>
