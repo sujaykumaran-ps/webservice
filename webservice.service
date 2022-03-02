@@ -1,0 +1,14 @@
+[Unit]
+Description=webservice
+Documentation=https://github.com/the-office-csye6225/webservice.git
+After=network.target
+
+[Service]
+Type=simple
+User=node
+ExecStart=/usr/bin/node /usr/src/webservice/app.js serve
+WorkingDirectory=/usr/src/webservice
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
