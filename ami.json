@@ -1,0 +1,42 @@
+{
+    "variables": {
+        "aws_access_key": "AKIAVHUGFUXVMFETSIOT",
+        "aws_secret_key": "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",
+        "aws_region": "us-east-1",
+        "subnet_id": "subnet-0dd19433a35a966a5",
+        "source_ami": "ami-033b95fb8079dc481",
+        "ssh_username": "ec2-user"
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "ami_users": [359984899562, 342617959621],
+            "access_key": "{{user `aws_access_key`}}",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "region": "{{user `aws_region`}}",
+            "instance_type": "t2.micro",
+            "subnet_id": "{{user `subnet_id`}}",
+            "source_ami": "{{user `source_ami`}}",
+            "ssh_username": "{{user `ssh_username`}}",
+            "ami_name": "csye6225_ami_{{timestamp}}",
+            "ami_description": "Linux AMI for CSYE6225",
+            "launch_block_device_mappings": [
+                {
+                    "device_name": "/dev/xvda",
+                    "volume_size": 8,
+                    "volume_type": "gp2",
+                    "delete_on_termination": true
+                }
+            ]
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "app-server.sh",
+            "pause_before": "10s",
+            "timeout": "10s"
+
+        }
+    ]
+}
