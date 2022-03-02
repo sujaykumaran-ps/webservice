@@ -1,7 +1,7 @@
 {
     "variables": {
-        "aws_access_key": "AKIAVHUGFUXVMFETSIOT",
-        "aws_secret_key": "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",
+        "aws_access_key": "",
+        "aws_secret_key": "",
         "aws_region": "us-east-1",
         "subnet_id": "subnet-0dd19433a35a966a5",
         "source_ami": "ami-033b95fb8079dc481",
