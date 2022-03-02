@@ -39,7 +39,7 @@ chown -R node:node /usr/src/webservice
 su node
 
 # Clone the repo
-git clone git@github.com:sujaykumaran-ps/webservice.git /usr/src/webservice
+git clone git@github.com:the-office-csye6225/webservice.git /usr/src/webservice
 cd /usr/src/webservice
 
 # Install the app's production dependencies
