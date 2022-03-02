@@ -20,7 +20,7 @@ echo 'here'
 pass=$(sudo grep 'temporary password' /var/log/mysqld.log | awk {'print $13'})
 mysql --connect-expired-password -u root -p$pass -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Jayashree44.';"
 
-git clone git@github.com:the-office-csye6225/webservice.git
+# git clone git@github.com:the-office-csye6225/webservice.git
 
 # Install node js
 # Create and enter a temporary directory
