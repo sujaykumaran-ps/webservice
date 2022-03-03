@@ -1,5 +1,5 @@
 [Unit]
-Description=My app
+Description=Web Service
 [Service]
 ExecStart=/home/ec2-user/webservice/app.js
 User=ec2-user

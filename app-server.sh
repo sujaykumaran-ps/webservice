@@ -40,8 +40,8 @@ sudo chmod +x app.js
 sudo chmod +x app-server.sh
 sudo cp webservice.service /etc/systemd/system
 sudo systemctl daemon-reload
-sudo systemctl enable myapp
-sudo systemctl start myapp
+sudo systemctl enable webservice
+sudo systemctl start webservice
 
 
 # npm install -g pm2
