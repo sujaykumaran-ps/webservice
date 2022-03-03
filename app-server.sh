@@ -25,15 +25,31 @@ npm -v
 # pass=$(sudo grep 'temporary password' /var/log/mysqld.log | awk {'print $13'})
 # mysql --connect-expired-password -u root -p$pass -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Jayashree44.';"
 
-sudo yum update -y sudo 
-sudo yum -your install https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
-sudo amazon-linux-extras install epel -y
-sudo yum -y install mysql-community-server
-sudo systemctl enable --now mysqld.service
+#install mysql
+sudo yum update -y
+sudo wget https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+sudo rpm -Uvh mysql80-community-release-el7-3.noarch.rpm
+sudo yum install mysql-server -y
+sudo systemctl start mysqld.service
 sudo systemctl status mysqld.service
-pwd=$(sudo grep 'temporary password' /var/log/mysqld.log | rev | cut -d':' -f 1 | rev | xargs) mysql -uroot -p$pwd --connect-expired-password -e "CREATE USER 'ec2-user'@'%' IDENTIFIED BY 'Jayashree44.';" 
-grant all privileges on *.* to 'ec2-user'@'%' with grant option; 
-mysql -uec2-user -pJayashree44. -e "CREATE DATABASE IF NOT EXISTS userdb"
+
+sleep 5
+#updating default password and create DB
+pwd=$(sudo grep 'temporary password' /var/log/mysqld.log | rev | cut -d':' -f 1 | rev | xargs)
+mysql -uroot -p"$pwd" --connect-expired-password -e "Alter user 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Jayashree44.'"
+mysql -uroot -pJayashree44. -e "CREATE DATABASE IF NOT EXISTS userdb"
+
+
+# sudo yum update -y sudo 
+# sudo yum -your install https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+# sudo amazon-linux-extras install epel -y
+# sudo yum -y install mysql-community-server
+# sudo systemctl enable --now mysqld.service
+# sudo systemctl status mysqld.service
+# pwd=$(sudo grep 'temporary password' /var/log/mysqld.log | rev | cut -d':' -f 1 | rev | xargs) mysql -uroot -p$pwd --connect-expired-password -e "CREATE USER 'ec2-user'@'%' IDENTIFIED BY 'Jayashree44.';" 
+# grant all privileges on *.* to 'ec2-user'@'%' with grant option; 
+# mysql -uec2-user -pJayashree44. -e "CREATE DATABASE IF NOT EXISTS userdb"
 
 
 ls -al
