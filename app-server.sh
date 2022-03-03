@@ -14,16 +14,25 @@ node -v
 npm install npm@latest -g
 npm -v
 
-sudo yum -y install https://dev.mysql.com/get/mysql80-community-release-el7-5.noarch.rpm
-echo 'Install epel'
-sudo amazon-linux-extras install epel -y
-echo 'Install community server'
-sudo yum -y install mysql-community-server
-sudo systemctl enable --now mysqld
-systemctl status mysqld
-echo 'here'
-pass=$(sudo grep 'temporary password' /var/log/mysqld.log | awk {'print $13'})
-mysql --connect-expired-password -u root -p$pass -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Jayashree44.';"
+# sudo yum -y install https://dev.mysql.com/get/mysql80-community-release-el7-5.noarch.rpm
+# echo 'Install epel'
+# sudo amazon-linux-extras install epel -y
+# echo 'Install community server'
+# sudo yum -y install mysql-community-server
+# sudo systemctl enable --now mysqld
+# systemctl status mysqld
+# echo 'here'
+# pass=$(sudo grep 'temporary password' /var/log/mysqld.log | awk {'print $13'})
+# mysql --connect-expired-password -u root -p$pass -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Jayashree44.';"
+
+sudo yum update -y sudo 
+wget https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm 
+sudo rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022 
+sudo rpm -Uvh mysql80-community-release-el7-3.noarch.rpm sudo yum 
+install mysql-server -y 
+sudo systemctl start mysqld.service 
+sudo systemctl status mysqld.service 
+pwd=$(sudo grep 'temporary password' /var/log/mysqld.log | rev | cut -d':' -f 1 | rev | xargs) mysql -uroot -p$pwd --connect-expired-password -e "Alter user 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'" mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS userdb"
 
 
 ls -al
