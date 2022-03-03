@@ -1,5 +1,9 @@
 name: CI - Unit Test
 on:
+  push:
+    branches:
+      - main
+      - assignment04
   pull_request:
     branches: [ main ]
 jobs:
