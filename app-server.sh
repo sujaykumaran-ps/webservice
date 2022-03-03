@@ -28,7 +28,7 @@ npm -v
 sudo yum update -y sudo 
 sudo yum install https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
 sudo amazon-linux-extras install epel -y
-sudo yum install mysql-community-server
+sudo yum -y install mysql-community-server
 sudo systemctl enable --now mysqld
 sudo systemctl status mysqld
 pwd=$(sudo grep 'temporary password' /var/log/mysqld.log | rev | cut -d':' -f 1 | rev | xargs) mysql -uroot -p$pwd --connect-expired-password -e "Alter user 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Jayashree44.'" mysql -uroot -pJayashree44. -e "CREATE DATABASE IF NOT EXISTS userdb"

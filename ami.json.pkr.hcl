@@ -21,7 +21,7 @@ variable "source_ami" {
 
 variable "ssh_username" {
   type    = string
-  default = "root"
+  default = "ec2-user"
 }
 
 variable "subnet_id" {
