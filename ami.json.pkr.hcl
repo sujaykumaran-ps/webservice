@@ -67,7 +67,6 @@ build {
 
   provisioner "shell" {
     script = "app-server.sh"
-    timeout = "10s"
   }
 
 }
