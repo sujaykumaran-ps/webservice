@@ -40,8 +40,6 @@ pwd=$(sudo grep 'temporary password' /var/log/mysqld.log | rev | cut -d':' -f 1 
 mysql -uroot -p"$pwd" --connect-expired-password -e "Alter user 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Jayashree44.'"
 mysql -uroot -pJayashree44. -e "CREATE DATABASE IF NOT EXISTS userdb"
 
-sudo npm install -g pm2
-
 # sudo yum update -y sudo 
 # sudo yum -your install https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
 # sudo amazon-linux-extras install epel -y
@@ -69,8 +67,3 @@ sudo cp webservice.service /etc/systemd/system
 sudo systemctl daemon-reload
 sudo systemctl enable webservice
 sudo systemctl start webservice
-cd  ~/webservice/
-sudo pm2 start app.js
-sudo pm2 startup systemd
-sudo pm2 save
-sudo pm2 list
