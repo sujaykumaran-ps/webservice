@@ -69,6 +69,6 @@ sudo systemctl enable webservice
 sudo systemctl start webservice
 npm install pm2 -g
 sleep 15
-sudo pm2 start webservice/app.js
-sudo pm2 startup
+pm2 start webservice/app.js
+pm2 startup
 pm2 list
