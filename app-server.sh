@@ -67,6 +67,4 @@ sudo chmod +x app-server.sh
 sudo cp webservice.service /etc/systemd/system
 sudo systemctl daemon-reload
 sudo systemctl enable webservice
-sudo systemctl start webservice
-cd webservice
-npm start & npx wait-on http://localhost:3000
+sudo systemctl start webservice/app.js
