@@ -32,7 +32,7 @@ sudo rpm -Uvh mysql80-community-release-el7-3.noarch.rpm sudo yum
 install mysql-server -y 
 sudo systemctl start mysqld.service 
 sudo systemctl status mysqld.service 
-pwd=$(sudo grep 'temporary password' /var/log/mysqld.log | rev | cut -d':' -f 1 | rev | xargs) mysql -uroot -p$pwd --connect-expired-password -e "Alter user 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'" mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS userdb"
+pwd=$(sudo grep 'temporary password' /var/log/mysqld.log | rev | cut -d':' -f 1 | rev | xargs) mysql -uroot -p$pwd --connect-expired-password -e "Alter user 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Jayashree44.'" mysql -uroot -pJayashree44. -e "CREATE DATABASE IF NOT EXISTS userdb"
 
 
 ls -al
