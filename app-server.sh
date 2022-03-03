@@ -69,4 +69,4 @@ sudo systemctl daemon-reload
 sudo systemctl enable webservice
 sudo systemctl start webservice
 cd webservice
-npm start
+npm start & npx wait-on http://localhost:3000
