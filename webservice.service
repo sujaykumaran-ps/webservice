@@ -1,14 +1,14 @@
 [Unit]
-Description=webservice
-Documentation=https://github.com/the-office-csye6225/webservice.git
-After=network.target
-
+Description=My app
 [Service]
-Type=simple
-User=node
-ExecStart=/usr/bin/node /usr/src/webservice/app.js serve
-WorkingDirectory=/usr/src/webservice
-Restart=on-failure
-
+ExecStart=/home/ec2-user/webservice/app.js
+User=ec2-user
+SuccessExitStatus=143
+RemainAfterExit=yes
+# Note Debian/Ubuntu uses 'nogroup', RHEL/Fedora uses 'nobody'
+Group=nobody
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/home/ec2-user/webservice/
 [Install]
 WantedBy=multi-user.target

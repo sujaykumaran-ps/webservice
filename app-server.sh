@@ -1,4 +1,5 @@
 #!/bin/sh
+#!/usr/bin/env bash
 sleep 30
 
 sudo yum update -y
@@ -8,6 +9,10 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 . ~/.nvm/nvm.sh
 nvm install node
 node -e "console.log('Running Node.js ' + process.version)"
+nvm use node
+node -v
+npm install npm@latest -g
+npm -v
 
 sudo yum -y install https://dev.mysql.com/get/mysql80-community-release-el7-5.noarch.rpm
 echo 'Install epel'
@@ -19,6 +24,35 @@ systemctl status mysqld
 echo 'here'
 pass=$(sudo grep 'temporary password' /var/log/mysqld.log | awk {'print $13'})
 mysql --connect-expired-password -u root -p$pass -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Jayashree44.';"
+
+
+ls -al
+cd /tmp/
+echo "$(pwd)"
+ls -al
+cp webservice.tar /home/ec2-user/
+cd /home/ec2-user/
+tar -xf webservice.tar
+ls -ltr
+cd webservice
+ls -ltr
+sudo chmod +x app.js
+sudo chmod +x ami-script.sh
+sudo cp myapp.service /etc/systemd/system
+sudo systemctl daemon-reload
+sudo systemctl enable myapp
+sudo systemctl start myapp
+
+
+# npm install -g pm2
+
+# mkdir -p ~/code/app-dist
+# mv /tmp/webservice ~/code/app-dist/webservice
+# cd  ~/code/app-dist/webservice
+# pm2 start app.js
+# pm2 startup systemd
+# pm2 save
+# pm2 list
 
 # git clone git@github.com:the-office-csye6225/webservice.git
 
