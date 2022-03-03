@@ -68,3 +68,5 @@ sudo cp webservice.service /etc/systemd/system
 sudo systemctl daemon-reload
 sudo systemctl enable webservice
 sudo systemctl start webservice
+cd webservice
+npm start
