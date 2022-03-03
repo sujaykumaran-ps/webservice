@@ -37,8 +37,8 @@ ls -ltr
 cd webservice
 ls -ltr
 sudo chmod +x app.js
-sudo chmod +x ami-script.sh
-sudo cp myapp.service /etc/systemd/system
+sudo chmod +x app-server.sh
+sudo cp webservice.service /etc/systemd/system
 sudo systemctl daemon-reload
 sudo systemctl enable myapp
 sudo systemctl start myapp
@@ -54,12 +54,6 @@ sudo systemctl start myapp
 # pm2 save
 # pm2 list
 
-# git clone git@github.com:the-office-csye6225/webservice.git
-
-# Install node js
-# Create and enter a temporary directory
-# TMP=`mktemp -d`
-# cd $TMP
 
 # # In the temp dir, get the node binaries and extract them
 # curl -sLO https://nodejs.org/dist/latest-v14.x/node-$VERSION.tar.gz
@@ -120,5 +114,3 @@ sudo systemctl start myapp
 # sudo yum -y install mysql-community-server
 # sudo systemctl enable --now mysqld
 # systemctl status mysqld
-
-
