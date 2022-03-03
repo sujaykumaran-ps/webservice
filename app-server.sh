@@ -37,8 +37,10 @@ sudo systemctl status mysqld.service
 sleep 5
 #updating default password and create DB
 pwd=$(sudo grep 'temporary password' /var/log/mysqld.log | rev | cut -d':' -f 1 | rev | xargs)
-mysql -uroot -p"$pwd" --connect-expired-password -e "Alter user 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Jayashree44.'"
-mysql -uroot -pJayashree44. -e "CREATE DATABASE IF NOT EXISTS userdb"
+# mysql -uroot -p"$pwd" --connect-expired-password -e "Alter user 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Jayashree44.'"
+mysql -uroot -p$pwd --connect-expired-password -e "CREATE USER 'ec2-user'@'%' IDENTIFIED BY 'Jayashree44.';"
+grant all privileges on *.* to 'ec2-user'@'%' with grant option; 
+mysql -uec2-user -pJayashree44. -e "CREATE DATABASE IF NOT EXISTS userdb"
 
 
 # sudo yum update -y sudo 
