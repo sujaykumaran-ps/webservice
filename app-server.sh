@@ -14,16 +14,6 @@ node -v
 npm install npm@latest -g
 npm -v
 
-# sudo yum -y install https://dev.mysql.com/get/mysql80-community-release-el7-5.noarch.rpm
-# echo 'Install epel'
-# sudo amazon-linux-extras install epel -y
-# echo 'Install community server'
-# sudo yum -y install mysql-community-server
-# sudo systemctl enable --now mysqld
-# systemctl status mysqld
-# echo 'here'
-# pass=$(sudo grep 'temporary password' /var/log/mysqld.log | awk {'print $13'})
-# mysql --connect-expired-password -u root -p$pass -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Jayashree44.';"
 
 #install mysql
 sudo yum update -y
@@ -71,4 +61,5 @@ npm install pm2 -g
 sleep 15
 pm2 start app.js
 pm2 startup
+pm2 save
 pm2 list
