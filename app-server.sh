@@ -14,16 +14,6 @@ node -v
 npm install npm@latest -g
 npm -v
 
-# sudo yum -y install https://dev.mysql.com/get/mysql80-community-release-el7-5.noarch.rpm
-# echo 'Install epel'
-# sudo amazon-linux-extras install epel -y
-# echo 'Install community server'
-# sudo yum -y install mysql-community-server
-# sudo systemctl enable --now mysqld
-# systemctl status mysqld
-# echo 'here'
-# pass=$(sudo grep 'temporary password' /var/log/mysqld.log | awk {'print $13'})
-# mysql --connect-expired-password -u root -p$pass -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'Jayashree44.';"
 
 #install mysql
 sudo yum update -y
@@ -39,7 +29,6 @@ sleep 5
 pwd=$(sudo grep 'temporary password' /var/log/mysqld.log | rev | cut -d':' -f 1 | rev | xargs)
 mysql -uroot -p"$pwd" --connect-expired-password -e "Alter user 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Jayashree44.'"
 mysql -uroot -pJayashree44. -e "CREATE DATABASE IF NOT EXISTS userdb"
-
 
 # sudo yum update -y sudo 
 # sudo yum -your install https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
@@ -68,3 +57,10 @@ sudo cp webservice.service /etc/systemd/system
 sudo systemctl daemon-reload
 sudo systemctl enable webservice
 sudo systemctl start webservice
+npm install pm2 -g
+sleep 15
+sudo env PATH=$PATH:/home/ec2-user/.nvm/versions/node/v17.6.0/bin /home/ec2-user/.nvm/versions/node/v17.6.0/lib/node_modules/pm2/bin/pm2 startup systemd -u ec2-user --hp /home/ec2-user
+pm2 start app.js
+pm2 startup
+pm2 save
+pm2 list
