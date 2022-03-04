@@ -59,6 +59,7 @@ sudo systemctl enable webservice
 sudo systemctl start webservice
 npm install pm2 -g
 sleep 15
+sudo env PATH=$PATH:/home/ec2-user/.nvm/versions/node/v17.6.0/bin /home/ec2-user/.nvm/versions/node/v17.6.0/lib/node_modules/pm2/bin/pm2 startup systemd -u ec2-user --hp /home/ec2-user
 pm2 start app.js
 pm2 startup
 pm2 save
