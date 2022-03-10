@@ -1,11 +1,19 @@
 const { createPool } = require("mysql2");
 
+const {
+  db_host,
+  db_port,
+  db_user,
+  db_password,
+  default_database,
+} = require("../config.json");
+
 const pool = createPool({
-  port: 3306,
-  host: 'localhost',
-  user: 'root',
-  password: 'Jayashree44.',
-  database: 'userdb',
+  port: db_port,
+  host: db_host.split(":")[0],
+  user: db_user,
+  password: db_password,
+  database: default_database,
   connectionLimit: 0,  // default value
 });
 

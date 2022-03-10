@@ -10,7 +10,7 @@ const {
   generateHashedPassword,
 } = require("../../helpers/helper");
 
-const s3_bucket = "csye6225bucket.dev.sujays.me";
+const { s3_bucket } = require("../../config.json");
 
 var auth = require("basic-auth");
 const multer = require("multer");
