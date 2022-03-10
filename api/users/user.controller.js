@@ -176,7 +176,7 @@ module.exports = {
                         console.log(err);
                         console.log("Error uploading data: ", upload_data);
                       } else {
-                        console.log("Successfully uploaded profile image !!!");
+                        console.log("Successfully updated profile image !!!");
                         pool.query(
                           "UPDATE image set id = ?, file_name = ?,url = ?, upload_date = ? where user_id = ?",
                           [id, data.key, data.Location, new Date(), results[0].id],
@@ -184,7 +184,7 @@ module.exports = {
                             if (error) {
                               console.log("err :", error);
                               res.status(400).send({
-                                failed: "Profile Image Changed !!!",
+                                failed: "Failed to change Profile Image !!!",
                               });
                             } else {
                               res.status(201).send({
@@ -271,11 +271,11 @@ module.exports = {
                   });
                 }
                 res.status(200).send({
-                  file_name: results[0].Key,
-                  id: results[0].user_id,
-                  url: results[0].Location,
+                  file_name: results[0].file_name,
+                  id: results[0].id,
+                  url: results[0].url,
                   upload_date: results[0].upload_date,
-                  user_id: results[0].id,
+                  user_id: results[0].user_id,
                 });
               });
             } else {
