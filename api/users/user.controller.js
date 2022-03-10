@@ -16,14 +16,14 @@ var auth = require("basic-auth");
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 const fs = require("fs");
-
+// AWS Config
 var AWS = require("aws-sdk");
 AWS.config.update({ 
   region: "us-east-1" });
 s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 
 module.exports = {
-  //createUser controller
+  // Create User
   createUser: (req, res) => {
     const newUser = req.body;
     if (!newUser.username) {
@@ -56,7 +56,7 @@ module.exports = {
     newUser.id = crypto.randomBytes(16).toString("hex");
     newUser.account_created = new Date();
     newUser.account_updated = new Date();
-    //call create service
+    
     create(newUser, (err, results) => {
       if (err) {
         if (err.code == "ER_DUP_ENTRY") {
@@ -75,6 +75,8 @@ module.exports = {
       return res.status(201).send(results);
     });
   },
+
+  // Get User Details
   getUser: async (req, res) => {
     const username = req.username;
     const password = req.password;
@@ -95,6 +97,8 @@ module.exports = {
       return res.send(results);
     });
   },
+
+  // Update User Details
   updateUser: async (req, res) => {
     if (
       "id" in req.body ||
@@ -130,6 +134,8 @@ module.exports = {
       });
     }
   },
+
+  // Upload Profile Image into DB and S3 Bucket
   uploadFile: async (req, res) => {
     buf = Buffer.from(
       req.body.contents.replace(/^data:image\/\w+;base64,/, ""),
@@ -242,6 +248,8 @@ module.exports = {
       }
     );
   },
+
+  // Retrieve Profile Image
   getFile: async (req, res) => {
     var username = req.username;
     var password = req.password;
@@ -290,6 +298,8 @@ module.exports = {
       }
     );
   },
+
+  // Delete Profile Image
   deleteFile: async (req, res) => {
     var username = req.username;
     var password = req.password;

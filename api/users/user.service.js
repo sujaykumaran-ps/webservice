@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const { generateHashedPassword } = require("../../helpers/helper");
 
 module.exports = {
+  // Service to Create User
   create: (data, callBack) => {
     // connection will be acquired automatically
     pool.query(
@@ -33,6 +34,8 @@ module.exports = {
       }
     );
   },
+
+  // Service to get User Details
   getUser: (username, password, callBack) => {
     pool.query(
       `select * from user where username = ?`,
@@ -76,6 +79,8 @@ module.exports = {
       }
     );
   },
+
+  // Service to Update User Details
   updateUser: async (data, callBack) => {
     pool.query(
       `select * from user where username = ?`,

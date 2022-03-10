@@ -12,5 +12,5 @@ app.get('/healthz', (req,res)=>{
   res.status(200).send();
 })
 app.listen(3000, () => {
-  console.log("Server up and running at : ", 3000);
+  console.log("App Running on Port : ", 3000);
 });
