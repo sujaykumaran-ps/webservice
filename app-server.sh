@@ -2,9 +2,6 @@
 #!/usr/bin/env bash
 sleep 30
 
-sudo yum update -y
-sudo yum install -y git
-
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 . ~/.nvm/nvm.sh
 nvm install node
