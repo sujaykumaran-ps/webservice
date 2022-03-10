@@ -10,11 +10,7 @@ const {
   generateHashedPassword,
 } = require("../../helpers/helper");
 
-const { 
-  s3_bucket,
-  AWS_ACCESS_KEY_ID,
-  AWS_ACCESS_KEY_SECRET, 
-} = require("../../config.json");
+const { s3_bucket } = require("../../config.json");
 
 var auth = require("basic-auth");
 const multer = require("multer");
@@ -22,10 +18,7 @@ const upload = multer({ dest: "uploads/" });
 const fs = require("fs");
 // AWS Config
 var AWS = require("aws-sdk");
-AWS.config.update({ 
-  accessKeyId: AWS_ACCESS_KEY_ID,
-  secretAccessKey: AWS_ACCESS_KEY_SECRET,
-  region: "us-east-1" });
+AWS.config.update({ region: "us-east-1" });
 s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 
 module.exports = {
