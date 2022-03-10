@@ -1,7 +1,7 @@
 name: CI - Unit Test
 on:
-  push:
-    branches: [ assignment#05 ]
+  pull_request:
+    branches: [ main ]
 jobs:
   Test:
     runs-on: ubuntu-latest
