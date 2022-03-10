@@ -9,7 +9,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 . ~/.nvm/nvm.sh
 nvm install node
 node -e "console.log('Running Node.js ' + process.version)"
-nvm use node
+nvm use 17.7.0
 node -v
 npm install npm@latest -g
 npm -v
