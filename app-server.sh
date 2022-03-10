@@ -50,8 +50,6 @@ cd /home/ec2-user/
 tar -xf webservice.tar
 ls -ltr
 cd webservice
-npm install pm2 -g
-sleep 15
 ls -ltr
 sudo chmod +x app.js
 sudo chmod +x app-server.sh
