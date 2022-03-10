@@ -51,6 +51,7 @@ tar -xf webservice.tar
 ls -ltr
 cd webservice
 npm install pm2 -g
+sleep 15
 ls -ltr
 sudo chmod +x app.js
 sudo chmod +x app-server.sh
@@ -58,7 +59,7 @@ sudo cp webservice.service /etc/systemd/system
 sudo systemctl daemon-reload
 sudo systemctl enable webservice
 sudo systemctl start webservice
-sleep 30
+sleep 10
 sudo env PATH=$PATH:/home/ec2-user/.nvm/versions/node/v17.6.0/bin /home/ec2-user/.nvm/versions/node/v17.6.0/lib/node_modules/pm2/bin/pm2 startup systemd -u ec2-user --hp /home/ec2-user
 pm2 start app.js
 pm2 startup
