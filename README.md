@@ -2,7 +2,7 @@
 
 **Name**  - Sujaykumaran Palanikumar Sankarapandian<br/>
 **NUID**  - 002108932<br/>
-**Email** - palanikumarsankara.s@northeastern.edu 
+**Email** - palanikumarsankara.s@northeastern.edu   
 
 ## Description:
 
