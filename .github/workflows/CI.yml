@@ -1,7 +1,7 @@
 name: CI - Unit Test
 on:
   push:
-    branches: [ assignment04 ]
+    branches: [ demobrancha4 ]
 jobs:
   Test:
     runs-on: ubuntu-latest
@@ -62,6 +62,6 @@ jobs:
           target: ./ami.json.pkr.hcl
         env:
           PACKER_LOG: 1
-          GITHUB_REPO_PATH: ${{ https://github.com/sujaykumaran-ps/webservice/tree/assignment04 }}
+          GITHUB_REPO_PATH: ${{ github.workspace }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
