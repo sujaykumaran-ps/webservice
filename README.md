@@ -23,3 +23,4 @@ Authenticated Users can view and Update their account information using 'v1/user
 9. View the User Account Details by hitting the 'http://localhost:3000/v1/user/self'. This will return error if user is not authenticated.
 10. The Authenticated User details can be updated by PUT request to the same endpoint.
 11. Run the 'npm test' command to run the unit tests for the application.
+
