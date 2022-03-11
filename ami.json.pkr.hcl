@@ -63,8 +63,8 @@ build {
    provisioner "file" {
       destination = "/tmp/webservice.tar"
       source      = "${var.github_repo}/appDir/webservice.tar"
-}
-  
+  }
+
   provisioner "shell" {
     script = "app-server.sh"
   }

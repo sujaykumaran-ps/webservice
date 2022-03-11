@@ -1,16 +1,29 @@
-require("dotenv").config();
-const express = require("express");
+const express = require('express');
+const cors = require("cors");
 const app = express();
-const userRouter = require("./api/users/user.router");
 
-//convert user input to JSON
+
+const sequelize = require('sequelize');
+const basicAuth = require('./app/_helpers/basic-auth');
+
+const db = require("./app/models");
+db.sequelize.sync();
+
+var corsOptions = {
+    origin: "http://localhost:8081"
+};
+
+app.use(express.urlencoded({ extended: true }));
+app.use(cors(corsOptions));
 app.use(express.json());
+app.use(basicAuth);
 
-app.use("/v1/user", userRouter);
 
-app.get('/healthz', (req,res)=>{
-  res.status(200).send();
-})
-app.listen(3000, () => {
-  console.log("App Running on Port : ", 3000);
+
+app.get('/healthz', (req, res) => {
+    res.json()
 });
+
+require("./app/routes/app.routes.js")(app);
+
+app.listen(3000, () => console.log(`App listening at http://localhost:3000`));
