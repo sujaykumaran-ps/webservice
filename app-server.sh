@@ -4,9 +4,9 @@ sleep 30
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 . ~/.nvm/nvm.sh
-nvm install node
+nvm install 17.7.0
 node -e "console.log('Running Node.js ' + process.version)"
-nvm use 17.7.0
+nvm use node
 node -v
 npm install npm@latest -g
 npm -v
