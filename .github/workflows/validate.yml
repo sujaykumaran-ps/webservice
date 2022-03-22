@@ -5,20 +5,28 @@ on:
 jobs:
   Validate:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 14.x ]
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - name: Install Node Packages
-      run: npm ci 
-    - name: Packer Init
-      uses: hashicorp/packer-github-actions@master
-      with:
-        command: init
-        target:  ami.json.pkr.hcl
+      - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      # Runs a set of commands using the runners shell
+      - name: NPM tests
+        run: |
+          cd api
+          pwd
+          npm ci
+          echo "PWD: $(pwd)"
+          ls -ltr
+    # Packer validation and ami creation
+      - name: Init Template
+        uses: hashicorp/packer-github-actions@master
+        with:
+          command: init
+          target: ./ami.json.pkr.hcl
