@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
-  build:
+  Validate:
     runs-on: ubuntu-latest
     strategy:
       matrix:
