@@ -1,0 +1,24 @@
+name: Validate
+on:
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 14.x ]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Install Node Packages
+      run: npm ci 
+    - name: Packer Init
+      uses: hashicorp/packer-github-actions@master
+      with:
+        command: init
+        target:  ami.json.pkr.hcl
