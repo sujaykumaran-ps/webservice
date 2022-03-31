@@ -1,0 +1,28 @@
+version: 0.0
+os: linux
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# giving permission to files and folders to centos user in home directory
+files:
+  - source: /
+    destination: /home/ubuntu/webapp
+
+hooks:
+  ApplicationStop:
+    - location: ./codedeploy/applicationStop.sh
+      timeout: 300
+      runas: ec2-user
+
+  ApplicationStart:
+    - location: ./codedeploy/applicationStart.sh
+      timeout: 300
+      runas: ec2-user
+  
+  ValidateService:
+    - location: scripts/validateService.sh
+      timeout: 300
+      runas: ec2-user
