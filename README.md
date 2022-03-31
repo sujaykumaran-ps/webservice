@@ -19,4 +19,4 @@ The user can add/update/delete their Profile image using the 'v1/user/self/pic' 
 4. Authenticate the User by using Postman Basic Auth.
 5. View the User Account Details by hitting the 'http://demo.sujays.me/v1/user/self'. This will return error if user is not authenticated.
 6.  The Authenticated User details can be updated by PUT request to the same endpoint.
-7.  Update a profile image to a user by using 'http://demo.sujays.me/v1/user/self/pic'. This will return error if user is not authenticated.
+7.  Update a profile image to a user by using 'http://demo.sujays.me/v1/user/self/pic'. This will return error if user is not authenticated. 
