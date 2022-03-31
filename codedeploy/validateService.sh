@@ -1,5 +1,5 @@
 #!/bin/bash
-
+npm install pm2 -g
 cd /home/ec2-user/webservice
 pm2 kill
 pm2 start app.js
