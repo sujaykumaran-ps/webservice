@@ -6,17 +6,20 @@ on:
 jobs:
   Test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+          
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - run: echo "The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
-      - name: Use Node.js 14
-        uses: actions/setup-node@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      
+      # Initialize Node.js
+      - name: Install Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
-          node-version: '14'
+          node-version: ${{ matrix.node-version }}
 
       # Runs a set of commands using the runners shell
       - name: NPM tests
@@ -31,15 +34,14 @@ jobs:
         run: |
           echo "PWD: $(pwd)"
           cd ../
-          zip -cf webservice.zip webservice
+          zip -r webservice.zip webservice
           ls -l
           echo "PWD: $(pwd)"
           cd webservice
           echo "mkdir"; mkdir appDir
           cp ../webservice.zip appDir
-          ls -l appDir          
+          ls -l appDir       
 
-          
       # Packer validation and ami creation
       - name: Init Template
         uses: hashicorp/packer-github-actions@master
