@@ -74,10 +74,3 @@ jobs:
       - name: Using code deploy
         run: |
           aws deploy create-deployment --application-name csye6225webapp --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name csye6225-webapp-deployment --file-exists-behavior OVERWRITE --s3-location bucket=${{secrets.CODEDEPLOY_BUCKET}},key=csye6225-webapplication-${{ github.sha }}.zip,bundleType=zip
-        env:
-          PACKER_LOG: 1
-          GITHUB_REPO_PATH: ${{ github.workspace }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          AWS_CODEDEPLOY_BUCKET: ${{secrets.CODEDEPLOY_BUCKET}}

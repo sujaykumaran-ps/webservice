@@ -24,15 +24,14 @@ ls -al
 cd /tmp/
 echo "$(pwd)"
 ls -al
-cp webservice.tar /home/ec2-user/
+cp webservice.zip /home/ec2-user/
 cd /home/ec2-user/
-tar -xf webservice.tar
+unzip -q webservice.zip
 ls -ltr
+chown ec2-user:ec2-user /home/ec2-user/webservice
 cd webservice
 ls -ltr
-sudo chmod +x app.js
 sudo chmod +x app-server.sh
-sudo cp webservice.service /etc/systemd/system
 
 npm install pm2 -g
 sleep 15
