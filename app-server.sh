@@ -38,6 +38,7 @@ sudo chmod +x app.js
 sudo chmod +x app-server.sh
 sudo cp webservice.service /etc/systemd/system
 
+# install pm2 and start application
 npm install pm2 -g
 sleep 15
 sudo env PATH=$PATH:/home/ec2-user/.nvm/versions/node/v17.7.0/bin /home/ec2-user/.nvm/versions/node/v17.7.0/lib/node_modules/pm2/bin/pm2 startup systemd -u ec2-user --hp /home/ec2-user
