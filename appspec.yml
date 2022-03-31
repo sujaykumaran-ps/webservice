@@ -12,10 +12,6 @@ files:
     destination: /home/ubuntu/webapp
 
 hooks:
-  ApplicationStop:
-    - location: ./codedeploy/applicationStop.sh
-      timeout: 300
-      runas: ec2-user
 
   ApplicationStart:
     - location: ./codedeploy/applicationStart.sh
