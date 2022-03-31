@@ -1,8 +1,8 @@
 #!/bin/bash
 
 cd /home/ec2-user/webservice
-sudo pm2 kill
-sudo pm2 start app.js
-sudo pm2 startup
-sudo pm2 save
-sudo pm2 list
+pm2 kill
+pm2 start app.js
+pm2 startup
+pm2 save
+pm2 list
