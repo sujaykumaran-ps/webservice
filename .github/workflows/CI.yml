@@ -31,12 +31,12 @@ jobs:
         run: |
           echo "PWD: $(pwd)"
           cd ../
-          tar -cf webservice.tar webservice
+          tar -cf webservice.zip webservice
           ls -l
           echo "PWD: $(pwd)"
           cd webservice
           echo "mkdir"; mkdir appDir
-          cp ../webservice.tar appDir
+          cp ../webservice.zip appDir
           ls -l appDir          
 
           
