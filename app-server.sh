@@ -4,17 +4,6 @@ sleep 30
 sudo yum update -y
 sudo yum install ruby wget unzip -y
 
-# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-# . ~/.nvm/nvm.sh
-# nvm install 17.7.0
-# node -e "console.log('Running Node.js ' + process.version)"
-# nvm use node
-# node -v
-# npm install npm@latest -g
-# npm -v
-
-# sudo yum install git make gcc -y
-# sudo yum install -y gcc-c++ make
 sudo yum install git make gcc -y
 
 sleep 10
@@ -32,8 +21,8 @@ wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install
 chmod +x ./install
 sudo ./install auto
 sudo service codedeploy-agent status
-sudo service codedeploy-agent start
-sudo service codedeploy-agent status
+# sudo service codedeploy-agent start
+# sudo service codedeploy-agent status
 
 ls -al
 cd /tmp/
