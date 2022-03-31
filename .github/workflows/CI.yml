@@ -31,7 +31,7 @@ jobs:
         run: |
           echo "PWD: $(pwd)"
           cd ../
-          tar -cf webservice.zip webservice
+          zip -cf webservice.zip webservice
           ls -l
           echo "PWD: $(pwd)"
           cd webservice
