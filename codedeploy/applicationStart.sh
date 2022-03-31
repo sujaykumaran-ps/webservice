@@ -1,7 +1,6 @@
 #!/bin/bash
 #start app
-cd /home/ec2-user/webservice/app
-sudo pm2 kill
+cd /home/ec2-user/webservice
 sudo pm2 start app.js
 sudo pm2 startup
 sudo pm2 save
