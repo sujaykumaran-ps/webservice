@@ -2,6 +2,7 @@ name: CI - Unit Test
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 jobs:
   Test:
     runs-on: ubuntu-latest
@@ -52,8 +53,23 @@ jobs:
           command: build
           arguments: "-color=false -on-error=abort"
           target: ./ami.json.pkr.hcl
+      - name: Configuring AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.GH_USER_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.GH_USER_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name: Copying artifact to S3
+        run: |
+          rm -rf aws
+          aws deploy push --application-name csye6225webapp --description "Copying the latest revision for csye6225webapplication-${{ github.sha }}.zip" --ignore-hidden-files --s3-location s3://${{secrets.CODEDEPLOY_BUCKET}}/csye6225-webapplication-${{ github.sha}}.zip  --source .
+      - name: Using code deploy
+        run: |
+          aws deploy create-deployment --application-name csye6225webapp --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name csye6225-webapp-deployment --file-exists-behavior OVERWRITE --s3-location bucket=${{secrets.CODEDEPLOY_BUCKET}},key=csye6225-webapplication-${{ github.sha }}.zip,bundleType=zip
         env:
           PACKER_LOG: 1
           GITHUB_REPO_PATH: ${{ github.workspace }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_CODEDEPLOY_BUCKET: ${{secrets.CODEDEPLOY_BUCKET}}

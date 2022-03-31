@@ -11,6 +11,14 @@ node -v
 npm install npm@latest -g
 npm -v
 
+# install codedeploy agent
+cd /home/ec2-user
+wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/latest/install
+chmod +x ./install
+sudo ./install auto
+sudo service codedeploy-agent status
+sudo service codedeploy-agent start
+sudo service codedeploy-agent status
 
 ls -al
 cd /tmp/
@@ -29,7 +37,3 @@ sudo cp webservice.service /etc/systemd/system
 npm install pm2 -g
 sleep 15
 sudo env PATH=$PATH:/home/ec2-user/.nvm/versions/node/v17.7.0/bin /home/ec2-user/.nvm/versions/node/v17.7.0/lib/node_modules/pm2/bin/pm2 startup systemd -u ec2-user --hp /home/ec2-user
-pm2 start app.js
-pm2 startup
-pm2 save
-pm2 list
