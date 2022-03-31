@@ -55,3 +55,4 @@ sleep 15
 sudo pm2 start app.js
 sudo pm2 save
 sudo pm2 startup systemd
+sudo service codedeploy-agent stop
