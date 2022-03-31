@@ -1,8 +1,7 @@
 #!/bin/bash
-npm install pm2 -g
 cd /home/ec2-user/webservice
-pm2 kill
-pm2 start app.js
-pm2 startup
-pm2 save
-pm2 list
+sudo pm2 kill
+sudo pm2 start app.js
+sudo pm2 startup
+sudo pm2 save
+sudo pm2 list
