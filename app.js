@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.use("/v1/user", userRouter);
 
-app.get('/health', (req,res)=>{
+app.get('/healthz', (req,res)=>{
   res.status(200).send();
 })
 app.listen(3000, () => {
