@@ -8,18 +8,15 @@
 
 This NodeJS application returns 200 status code when the '/healthz' URL is called. <br/>
 The user can Sign up with their details using the '/v1/user' endpoint. <br/>
-Authenticated Users can view and Update their account information using 'v1/user/self' Endpoint.
+Authenticated Users can view and Update their account information using 'v1/user/self' Endpoint. <br/>
+The user can add/update/delete their Profile image using the 'v1/user/self/pic' Endpoint. 
 
 ## Instructions to Run the Application:
 
-1. Clone the repository using the 'git clone' command.
-2. Import the Application folder in your preferred IDE.
-3. Install the dependencies using the 'npm install' command.
-4. Enter the credentials for MySQL DB in the Config file under "app/config" folder.
-5. Run the application using the 'npm start' command. The application will run in 'http://demo.sujays.me'.
-6. Hit the 'http://demo.sujays.me/healthz' URL in Postman. This will return the 200 OK Status.
-7. Add User Account by providing First Name, Last Name, Username and Password in a Json format, by posting to 'http://demo.sujays.me/v1/user' endpoint.
-8. Authenticate the User by using Postman Basic Auth.
-9. View the User Account Details by hitting the 'http://demo.sujays.me/v1/user/self'. This will return error if user is not authenticated.
-10. The Authenticated User details can be updated by PUT request to the same endpoint.
-11. Run the 'npm test' command to run the unit tests for the application.
+1. The application will run in 'http://demo.sujays.me'.
+2. Hit the 'http://demo.sujays.me/healthz' URL in Postman. This will return the 200 OK Status.
+3. Add User Account by providing First Name, Last Name, Username and Password in a Json format, by posting to 'http://demo.sujays.me/v1/user' endpoint.
+4. Authenticate the User by using Postman Basic Auth.
+5. View the User Account Details by hitting the 'http://demo.sujays.me/v1/user/self'. This will return error if user is not authenticated.
+6.  The Authenticated User details can be updated by PUT request to the same endpoint.
+7.  Update a profile image to a user by using 'http://demo.sujays.me/v1/user/self/pic'. This will return error if user is not authenticated.
