@@ -5,4 +5,3 @@ sudo pm2 kill
 sudo pm2 start app.js
 sudo pm2 save
 sudo pm2 startup systemd
-sudo pm2 list
