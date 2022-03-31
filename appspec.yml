@@ -1,5 +1,10 @@
 version: 0.0
 os: linux
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 # giving permission to files and folders to centos user in home directory
 files:
   - source: /
@@ -7,9 +12,9 @@ files:
 hooks:
   ApplicationStop:
     - location: ./codedeploy/applicationStop.sh
-      timeout: 300
+      timeout: 180
       runas: ec2-user
   ApplicationStart:
     - location: ./codedeploy/applicationStart.sh
-      timeout: 300
+      timeout: 180
       runas: ec2-user
