@@ -1,19 +1,11 @@
 version: 0.0
 os: linux
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
 # giving permission to files and folders to centos user in home directory
 files:
   - source: /
-    destination: /home/ubuntu/webservice
-
+    destination: /home/ec2-user/webservice
 hooks:
-
   ApplicationStart:
     - location: ./codedeploy/applicationStart.sh
-      timeout: 600
+      timeout: 300
       runas: ec2-user
