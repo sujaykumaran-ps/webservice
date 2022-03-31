@@ -55,6 +55,12 @@ jobs:
           command: build
           arguments: "-color=false -on-error=abort"
           target: ./ami.json.pkr.hcl
+        env:
+          PACKER_LOG: 1
+          GITHUB_REPO_PATH: ${{ github.workspace }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
       - name: Configuring AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
