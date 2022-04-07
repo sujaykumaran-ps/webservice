@@ -13,7 +13,7 @@ app.use(express.json());
 app.use("/v1/user", userRouter);
 
 app.get('/healthz', (req,res)=>{
-  logger.info("/healthz Status OK");
+  logger.info("Health Endpoint Status OK");
   sdc.increment("healthEndpoint");
   res.status(200).send();
 })
