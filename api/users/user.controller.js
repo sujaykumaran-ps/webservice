@@ -17,8 +17,8 @@ const {
 
 const log = require("../../logs");
 const logger = log.getLogger("logs");
-var SDC = require("statsd-client"),
-  sdc = new SDC({host: localhost, port: 8125});
+const SDC = require("statsd-client");
+const sdc = new SDC({ port: 8125 });
 
 var auth = require("basic-auth");
 const multer = require("multer");
