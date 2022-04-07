@@ -15,6 +15,11 @@ const {
   AWS_ACCESS_KEY_ID,
   AWS_ACCESS_KEY_SECRET, } = require("../../config.json");
 
+const log = require("../../logs");
+const logger = log.getLogger("logs");
+var SDC = require("node-statsd"),
+  sdc = new SDC({ port: 8125 });
+
 var auth = require("basic-auth");
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
@@ -31,6 +36,10 @@ module.exports = {
   // Create User
   createUser: (req, res) => {
     const newUser = req.body;
+    logger.info("Create User Log");
+    sdc.increment("createUser");
+    let timer = new Date();
+    let db_timer = new Date();
     if (!newUser.username) {
       return res.status(400).json({
         message: "Username cannot be Empty !!!",
@@ -77,6 +86,8 @@ module.exports = {
           });
         }
       }
+      sdc.timing("createUser", db_timer);
+      logger.info("New user created");
       return res.status(201).send(results);
     });
   },
@@ -85,7 +96,10 @@ module.exports = {
   getUser: async (req, res) => {
     const username = req.username;
     const password = req.password;
-
+    logger.info("Get User Log");
+    sdc.increment("getUser");
+    let timer = new Date();
+    let db_timer = new Date();
     await getUser(username, password, (err, results) => {
       if (err) {
         return res.status(401).json({
@@ -99,12 +113,16 @@ module.exports = {
           resolution: "Enter valid Basic Auth Header",
         });
       }
+      logger.info("Successfully retrieved User details");
+      sdc.timing("getUser", db_timer);
       return res.send(results);
     });
   },
 
   // Update User Details
   updateUser: async (req, res) => {
+    logger.info("Update User Log");
+    sdc.timing("updateUser", db_timer);
     if (
       "id" in req.body ||
       "account_created" in req.body ||
@@ -135,6 +153,8 @@ module.exports = {
             resolution: "Enter valid Basic Auth Header",
           });
         }
+        logger.info("User details updated");
+        sdc.timing("updateUser", db_timer);
         return res.status(204).send();
       });
     }

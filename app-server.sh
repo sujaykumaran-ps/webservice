@@ -24,6 +24,9 @@ sudo service codedeploy-agent status
 # sudo service codedeploy-agent start
 # sudo service codedeploy-agent status
 
+#install cloud watch agent
+sudo yum install amazon-cloudwatch-agent -y
+
 ls -al
 cd /tmp/
 echo "$(pwd)"
