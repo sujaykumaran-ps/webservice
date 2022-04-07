@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const userRouter = require("./api/users/user.router");
-const log = require("../../logs");
+const log = require("./logs");
 const logger = log.getLogger("logs");
 const SDC = require("statsd-client");
 const sdc = new SDC({ port: 8125 });
