@@ -24,9 +24,6 @@ sudo service codedeploy-agent status
 # sudo service codedeploy-agent start
 # sudo service codedeploy-agent status
 
-#install cloud watch agent
-sudo yum install amazon-cloudwatch-agent -y
-
 ls -al
 cd /tmp/
 echo "$(pwd)"
@@ -41,6 +38,14 @@ ls -ltr
 sudo chmod +x app.js
 sudo chmod +x app-server.sh
 sudo cp webservice.service /etc/systemd/system
+
+#install cloud watch agent
+sudo yum install amazon-cloudwatch-agent -y
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl \
+    -a fetch-config \
+    -m ec2 \
+    -c file:/home/ec2-user/webservice/cloudwatch-config.json \
+    -s
 
 # install pm2 and start application
 sleep 15
