@@ -36,17 +36,18 @@ module.exports = {
   // Create User
   createUser: (req, res) => {
     const newUser = req.body;
-    logger.info("Create User Log");
+    logger.info("Create User Logging");
     sdc.increment("createUser");
-    let timer = new Date();
     let db_timer = new Date();
     if (!newUser.username) {
+      logger.error("Username cannot be Empty !!!");
       return res.status(400).json({
         message: "Username cannot be Empty !!!",
         resolution: "Enter valid Username",
       });
     }
     if (!newUser.password) {
+      logger.error("Password cannot be Empty !!!");
       return res.status(400).json({
         message: "Password cannot be Empty !!!",
         resolution:
@@ -54,12 +55,14 @@ module.exports = {
       });
     }
     if (!validateEmail(newUser.username)) {
+      logger.error("Invalid username !!!");
       return res.status(400).json({
         message: "Invalid username !!!",
         resolution: "Enter valid Email",
       });
     }
     if (!checkForStrongPassword(newUser.password)) {
+      logger.error("Password too Weak !!!");
       return res.status(400).json({
         message: "Password too Weak !!!",
         resolution:
@@ -74,6 +77,7 @@ module.exports = {
     create(newUser, (err, results) => {
       if (err) {
         if (err.code == "ER_DUP_ENTRY") {
+          logger.error("Username already exists !!!");
           return res.status(400).json({
             message: "Username already exists !!!",
             resolution:
@@ -96,12 +100,12 @@ module.exports = {
   getUser: async (req, res) => {
     const username = req.username;
     const password = req.password;
-    logger.info("Get User Log");
+    logger.info("Get User Logging");
     sdc.increment("getUser");
-    let timer = new Date();
     let db_timer = new Date();
     await getUser(username, password, (err, results) => {
       if (err) {
+        logger.error("Authentication failed !!!");
         return res.status(401).json({
           message: "Authentication failed !!!",
           resolution: "Enter valid Basic Auth Header",
@@ -128,6 +132,7 @@ module.exports = {
       "account_created" in req.body ||
       "account_updated" in req.body
     ) {
+      logger.error("User cannot update id, username, account_created and account_updated Fields !!!");
       return res.status(403).json({
         message:
           "User cannot update id, username, account_created and account_updated Fields !!!",
@@ -139,6 +144,7 @@ module.exports = {
         "password" in req.body &&
         !checkForStrongPassword(req.body.password)
       ) {
+        logger.error("Password too Weak !!!");
         return res.status(400).json({
           message: "Password too Weak !!!",
           resolution:
@@ -148,6 +154,7 @@ module.exports = {
 
       await updateUser(req, (err, results) => {
         if (err) {
+          logger.error("Authentication failed !!!");
           return res.status(401).json({
             message: "Authentication failed !!!",
             resolution: "Enter valid Basic Auth Header",
