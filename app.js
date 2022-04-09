@@ -10,7 +10,7 @@ const sdc = new SDC({ port: 8125 });
 //convert user input to JSON
 app.use(express.json());
 
-app.use("/v2/user", userRouter);
+app.use("/v1/user", userRouter);
 
 app.get('/healthz', (req,res)=>{
   logger.info("Health Endpoint Status OK");
