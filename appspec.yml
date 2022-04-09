@@ -5,8 +5,8 @@ files:
   - source: /
     destination: /home/ec2-user/webservice
 hooks:
-  ApplicationStop:
-    - location: ./codedeploy/applicationStop.sh
+  BeforeInstall:
+    - location: ./codedeploy/beforeInstall.sh
       timeout: 300
       runas: ec2-user
   AfterInstall:
