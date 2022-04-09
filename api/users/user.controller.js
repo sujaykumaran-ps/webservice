@@ -13,7 +13,7 @@ const {
 const { 
   s3_bucket,
   AWS_ACCESS_KEY_ID,
-  AWS_ACCESS_KEY_SECRET, } = require("../../config.json");
+  AWS_ACCESS_KEY_SECRET, } = require("../../../config.json");
 
 const log = require("../../logs");
 const logger = log.getLogger("logs");
