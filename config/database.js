@@ -6,7 +6,7 @@ const {
   db_user,
   db_password,
   default_database,
-} = require("../config.json");
+} = require("../../config.json");
 
 const pool = createPool({
   port: db_port,
