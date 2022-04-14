@@ -40,7 +40,7 @@ cd webservice
 ls -ltr
 sudo chmod +x app.js
 sudo chmod +x app-server.sh
-sudo cp webservice.service /etc/systemd/system
+npm i
 
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl \
 -a fetch-config \
