@@ -43,7 +43,7 @@ router.delete("/v1/user/self/pic", baseAuthentication(), imageController.deleteU
 
 
 // Delete all User from table
-router.delete("/v1/deleteAll", userController.deleteAllUser);
+router.delete("/v1/user/deleteAll", userController.deleteAllUser);
 
 
 // Verify User email
