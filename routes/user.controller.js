@@ -82,6 +82,9 @@ async function createUser(req, res, next) {
                 var parameter = {
                     TableName: 'csye6225temp',
                     Item: {
+                        'Email': {
+                            S: udata.username
+                        },
                         'TokenName': {
                             S: randomnanoID
                         },
