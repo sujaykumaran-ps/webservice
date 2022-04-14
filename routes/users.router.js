@@ -24,10 +24,10 @@ router.get("/healthz", (req, res) => {
 router.post("/v2/user", userController.createUser);
 
 // GET(With Auth)
-router.get("/v1/user/self", baseAuthentication(), userController.getUser);
+router.get("/v2/user/self", baseAuthentication(), userController.getUser);
 
 // PUT 
-router.put("/v1/user/self", baseAuthentication(), userController.updateUser);
+router.put("/v2/user/self", baseAuthentication(), userController.updateUser);
 
 // Post
 const upload = multer({
@@ -43,7 +43,7 @@ router.delete("/v1/user/self/pic", baseAuthentication(), imageController.deleteU
 
 
 // Delete all User from table
-router.delete("/v1/user/deleteAll", userController.deleteAllUser);
+router.delete("/v2/user/deleteAll", userController.deleteAllUser);
 
 
 // Verify User email
