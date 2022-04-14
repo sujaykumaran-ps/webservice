@@ -80,7 +80,7 @@ async function createUser(req, res, next) {
                 const expiryTime = new Date().getTime();
                 // Create the Service interface for dynamoDB
                 var parameter = {
-                    TableName: 'csye6225temp',
+                    TableName: 'csye6225',
                     Item: {
                         'Email': {
                             S: udata.username
@@ -153,7 +153,7 @@ async function verifyUser(req, res, next) {
         } else {
 
             var params = {
-                TableName: 'csye6225temp',
+                TableName: 'csye6225',
                 Key: {
                     'Email': {
                         S: req.query.email
