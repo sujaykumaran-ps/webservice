@@ -69,7 +69,7 @@ async function createUser(req, res, next) {
         console.log('above user');
         User.create(user).then(async udata => {
 
-                let link = ' http://prod.sujays.me/v1/verifyUserEmail?email=' + udata.username + '&token=' + uuidv4();
+                let link = ' http://demo.sujays.me/v1/verifyUserEmail?email=' + udata.username + '&token=' + uuidv4();
                 const data_link = {
                     email: udata.id,
                     link: link
@@ -110,7 +110,7 @@ async function createUser(req, res, next) {
 
                     Message: JSON.stringify(msg),
                     Subject: randomnanoID,
-                    TopicArn: 'arn:aws:sns:us-east-1:278211383293:verify_email'
+                    TopicArn: 'arn:aws:sns:us-east-1:342617959621:verify_email'
 
                 }
                 var publishTextPromise = await sns.publish(params).promise();
