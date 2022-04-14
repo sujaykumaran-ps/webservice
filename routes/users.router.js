@@ -27,7 +27,7 @@ router.post("/v2/user", userController.createUser);
 router.get("/v2/user/self", baseAuthentication(), userController.getUser);
 
 // PUT 
-router.put("/v2/user/self", baseAuthentication(), userController.updateUser);
+router.put("/v1/user/self", baseAuthentication(), userController.updateUser);
 
 // Post
 const upload = multer({
