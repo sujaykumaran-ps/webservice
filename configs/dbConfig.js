@@ -1,6 +1,6 @@
 const env = process.env;
 constfs = require('fs');
-constrdsCa =fs.readFileSync('configs/global-bundle.pem');
+const rdsCa = fs.readFileSync('configs/global-bundle.pem');
 console.log('rdsCa',rdsCa);
 
 const config = {
